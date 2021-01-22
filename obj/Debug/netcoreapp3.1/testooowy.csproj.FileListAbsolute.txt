@@ -1,0 +1,13 @@
+C:\Projekty\Test\testooowy\bin\Debug\netcoreapp3.1\testooowy.exe
+C:\Projekty\Test\testooowy\bin\Debug\netcoreapp3.1\testooowy.deps.json
+C:\Projekty\Test\testooowy\bin\Debug\netcoreapp3.1\testooowy.runtimeconfig.json
+C:\Projekty\Test\testooowy\bin\Debug\netcoreapp3.1\testooowy.runtimeconfig.dev.json
+C:\Projekty\Test\testooowy\bin\Debug\netcoreapp3.1\testooowy.dll
+C:\Projekty\Test\testooowy\bin\Debug\netcoreapp3.1\testooowy.pdb
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.csprojAssemblyReference.cache
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.AssemblyInfoInputs.cache
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.AssemblyInfo.cs
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.csproj.CoreCompileInputs.cache
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.dll
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.pdb
+C:\Projekty\Test\testooowy\obj\Debug\netcoreapp3.1\testooowy.genruntimeconfig.cache
