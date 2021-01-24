@@ -13,7 +13,9 @@ variables:
   BuildConfiguration: 'Release'
   WorkingDirectory1: '$(Build.SourcesDirectory)/Test1'
 
-steps:
-- script: dotnet build --configuration $(BuildConfiguration)
-  displayName: 'dotnet build $(BuildConfiguration)'
-  workingDirectory: $(WorkingDirectory1)
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '$(WorkingDirectory1)/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+    workingDirectory: '$(WorkingDirectory1)'
