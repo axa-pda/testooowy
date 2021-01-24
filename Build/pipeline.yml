@@ -12,6 +12,7 @@ pool:
 variables:
   BuildConfiguration: 'Release'
   WorkingDirectory1: '$(Build.SourcesDirectory)/Test1'
+  TestsDirectory1: '$(Build.SourcesDirectory)/Test1.Tests'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -20,3 +21,17 @@ steps:
     projects: '$(WorkingDirectory1)/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
     workingDirectory: '$(WorkingDirectory1)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '$(TestsDirectory1)/*.sln'
+    arguments: '--configuration $(BuildConfiguration)'
+    workingDirectory: '$(TestsDirectory1)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '$(TestsDirectory1)/*.sln'
+    workingDirectory: '$(TestsDirectory1)'
+
