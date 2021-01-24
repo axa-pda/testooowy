@@ -32,6 +32,6 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '$(TestsDirectory1)/*.sln'
+    projects: '$(TestsDirectory1)/Test1.sln'
     workingDirectory: '$(TestsDirectory1)'
 
