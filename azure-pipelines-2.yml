@@ -10,9 +10,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Release'
+  BuildConfiguration: 'Release'
+  WorkingDirectory1: '$(Build.SourcesDirectory)/Test1'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-  workingDirectory: Test1
+- script: dotnet build --configuration $(BuildConfiguration)
+  displayName: 'dotnet build $(BuildConfiguration)'
+  workingDirectory1: $(WorkingDirectory1)
