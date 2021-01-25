@@ -17,21 +17,15 @@ variables:
 steps:
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'restore'
+    projects: '$(WorkingDirectory1)/*.csproj'
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'build'
     projects: '$(WorkingDirectory1)/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
     workingDirectory: '$(WorkingDirectory1)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '$(TestsDirectory1)/*.sln'
-    arguments: '--configuration $(BuildConfiguration)'
-    workingDirectory: '$(TestsDirectory1)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '$(TestsDirectory1)/Test1.sln'
-    workingDirectory: '$(TestsDirectory1)'
 
