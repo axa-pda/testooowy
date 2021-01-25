@@ -7,7 +7,6 @@ trigger:
   branches:
     include:
     - master
-    - releases/*
 
 pr:
   branches:
@@ -22,38 +21,54 @@ variables:
   WorkingDirectory: '$(Build.SourcesDirectory)'
   AppDirectory1: '$(Build.SourcesDirectory)/Test1'
 
-steps:
-- task: DotNetCoreCLI@2
-  displayName: .NET Restore
-  inputs:
-    command: 'restore'
-    projects: '$(WorkingDirectory)/*.sln'
-    feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  displayName: .NET Build Services
-  inputs:
-    command: 'build'
-    projects: '$(WorkingDirectory)/*.sln'
-    arguments: '--configuration $(BuildConfiguration)'
-    workingDirectory: '$(WorkingDirectory)'  
-- task: DotNetCoreCLI@2
-  displayName: .NET Test Service1
-  inputs:
-    command: 'test'
-    projects: '$(WorkingDirectory)/*.sln'
-    publishTestResults: false
-    testRunTitle: 'TestDodawania'
-    workingDirectory: '$(WorkingDirectory)'
-- task: Docker@2
-  displayName: Login To Docker
-  inputs:
-    containerRegistry: 'Docker'
-    command: 'login'
-- task: Docker@2
-  displayName: Build Service1 & Push To Docker
-  inputs:
-    containerRegistry: 'Docker'
-    repository: 'pdarni88/test1'
-    command: 'buildAndPush'
-    Dockerfile: '$(AppDirectory1)/Dockerfile'
+stages:
+-stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: .NET Restore
+      inputs:
+        command: 'restore'
+        projects: '$(WorkingDirectory)/*.sln'
+            feedsToUse: 'select'
+    - task: DotNetCoreCLI@2
+      displayName: .NET Build Services
+      inputs:
+        command: 'build'
+        projects: '$(WorkingDirectory)/*.sln'
+        arguments: '--configuration $(BuildConfiguration)'
+        workingDirectory: '$(WorkingDirectory)'  
+
+-stage: Tests
+  dependsOn: Build
+  jobs:
+  - job: Tests
+    steps
+      - task: DotNetCoreCLI@2
+        displayName: .NET Test Service1
+        inputs:
+          command: 'test'
+          projects: '$(WorkingDirectory)/*.sln'
+          publishTestResults: false
+          testRunTitle: 'TestDodawania'
+          workingDirectory: '$(WorkingDirectory)'
+
+-stage: Docker Push
+  dependsOn: Build
+  jobs:
+  - job: Docker Push
+    steps
+    - task: Docker@2
+      displayName: Login To Docker
+      inputs:
+        containerRegistry: 'Docker'
+        command: 'login'
+    - task: Docker@2
+      displayName: Build Service1 & Push To Docker
+      inputs:
+        containerRegistry: 'Docker'
+        repository: 'pdarni88/test1'
+        command: 'buildAndPush'
+        Dockerfile: '$(AppDirectory1)/Dockerfile'
 
