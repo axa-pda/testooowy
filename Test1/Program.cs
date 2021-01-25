@@ -16,7 +16,7 @@ namespace Test1
             CreateHostBuilder(args).Build().Run();
         }
 
-        //komentarz testowy
+        //komentarz testowy 2
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
