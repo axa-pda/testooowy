@@ -47,5 +47,5 @@ steps:
     containerRegistry: 'Docker'
     repository: 'pdarni88/test1'
     command: 'buildAndPush'
-    Dockerfile: '$(WorkingDirectory1)/Dockerfile'
+    Dockerfile: '$(WorkingDirectory)/Dockerfile'
 
