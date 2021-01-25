@@ -29,6 +29,10 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker'
     repository: 'pdarni88'
     command: 'buildAndPush'
     Dockerfile: '$(WorkingDirectory1)/Dockerfile'
