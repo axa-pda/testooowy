@@ -31,7 +31,7 @@ stages:
       inputs:
         command: 'restore'
         projects: '$(WorkingDirectory)/*.sln'
-            feedsToUse: 'select'
+        feedsToUse: 'select'
     - task: DotNetCoreCLI@2
       displayName: .NET Build Services
       inputs:
@@ -44,21 +44,21 @@ stages:
   dependsOn: Build
   jobs:
   - job: Tests
-    steps
-      - task: DotNetCoreCLI@2
-        displayName: .NET Test Service1
-        inputs:
-          command: 'test'
-          projects: '$(WorkingDirectory)/*.sln'
-          publishTestResults: false
-          testRunTitle: 'TestDodawania'
-          workingDirectory: '$(WorkingDirectory)'
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: .NET Test Service1
+      inputs:
+        command: 'test'
+        projects: '$(WorkingDirectory)/*.sln'
+        publishTestResults: false
+        testRunTitle: 'TestDodawania'
+        workingDirectory: '$(WorkingDirectory)'
 
--stage: Docker Push
+- stage: Docker Push
   dependsOn: Build
   jobs:
-  - job: Docker Push
-    steps
+  - job: Docker
+    steps:
     - task: Docker@2
       displayName: Login To Docker
       inputs:
@@ -71,4 +71,3 @@ stages:
         repository: 'pdarni88/test1'
         command: 'buildAndPush'
         Dockerfile: '$(AppDirectory1)/Dockerfile'
-
