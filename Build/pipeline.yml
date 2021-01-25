@@ -6,7 +6,7 @@
 trigger:
   branches:
     include:
-    - master
+    - '*'
 
 pr:
   branches:
@@ -23,8 +23,10 @@ variables:
 
 stages:
 - stage: Build
+  
   jobs:
   - job: Build
+     
     steps:
     - task: DotNetCoreCLI@2
       displayName: .NET Restore
