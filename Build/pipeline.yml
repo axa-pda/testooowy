@@ -12,7 +12,7 @@ pool:
 variables:
   BuildConfiguration: 'Release'
   WorkingDirectory: '$(Build.SourcesDirectory)'
-  TestsDirectory1: '$(Build.SourcesDirectory)/Test1.Tests'
+  AppDirectory1: '$(Build.SourcesDirectory)/Test1'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -47,5 +47,5 @@ steps:
     containerRegistry: 'Docker'
     repository: 'pdarni88/test1'
     command: 'buildAndPush'
-    Dockerfile: '$(WorkingDirectory)/Dockerfile'
+    Dockerfile: '$(AppDirectory1)/Dockerfile'
 
