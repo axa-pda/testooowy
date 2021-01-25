@@ -22,7 +22,7 @@ variables:
   AppDirectory1: '$(Build.SourcesDirectory)/Test1'
 
 stages:
--stage: Build
+- stage: Build
   jobs:
   - job: Build
     steps:
@@ -40,7 +40,7 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
         workingDirectory: '$(WorkingDirectory)'  
 
--stage: Tests
+- stage: Tests
   dependsOn: Build
   jobs:
   - job: Tests
