@@ -26,6 +26,10 @@ steps:
     projects: '$(WorkingDirectory1)/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
     workingDirectory: '$(WorkingDirectory1)'
-
-
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker'
+    repository: 'pdarni88'
+    command: 'buildAndPush'
+    Dockerfile: '$(WorkingDirectory1)/Dockerfile'
 
