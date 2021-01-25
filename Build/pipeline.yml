@@ -55,7 +55,7 @@ stages:
         workingDirectory: '$(WorkingDirectory)'
 
 - stage: Docker
-  dependsOn: Build
+  dependsOn: Tests
   jobs:
   - job: Docker
     steps:
