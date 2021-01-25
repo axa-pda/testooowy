@@ -4,7 +4,7 @@ namespace Test1
 {
     public class WeatherForecast
     {
-        //komentarz testowy
+        //komentarz testowy 2
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }
