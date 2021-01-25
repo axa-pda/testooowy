@@ -11,26 +11,38 @@ pool:
 
 variables:
   BuildConfiguration: 'Release'
-  WorkingDirectory1: '$(Build.SourcesDirectory)/Test1'
+  WorkingDirectory: '$(Build.SourcesDirectory)'
   TestsDirectory1: '$(Build.SourcesDirectory)/Test1.Tests'
 
 steps:
 - task: DotNetCoreCLI@2
+  displayName: .NET Restore
   inputs:
     command: 'restore'
-    projects: '$(WorkingDirectory1)/*.csproj'
+    projects: '$(WorkingDirectory)/*.sln'
     feedsToUse: 'select'
 - task: DotNetCoreCLI@2
+  displayName: .NET Build Services
   inputs:
     command: 'build'
-    projects: '$(WorkingDirectory1)/*.csproj'
+    projects: '$(WorkingDirectory)/*.sln'
     arguments: '--configuration $(BuildConfiguration)'
-    workingDirectory: '$(WorkingDirectory1)'
+    workingDirectory: '$(WorkingDirectory)'  
+- task: DotNetCoreCLI@2
+  displayName: .NET Test Service1
+  inputs:
+    command: 'test'
+    projects: '$(WorkingDirectory)/*.sln'
+    publishTestResults: false
+    testRunTitle: 'TestDodawania'
+    workingDirectory: '$(WorkingDirectory)'
 - task: Docker@2
+  displayName: Login To Docker
   inputs:
     containerRegistry: 'Docker'
     command: 'login'
 - task: Docker@2
+  displayName: Build Service1 & Push To Docker
   inputs:
     containerRegistry: 'Docker'
     repository: 'pdarni88/test1'
