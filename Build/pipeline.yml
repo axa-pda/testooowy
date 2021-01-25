@@ -54,7 +54,7 @@ stages:
         testRunTitle: 'TestDodawania'
         workingDirectory: '$(WorkingDirectory)'
 
-- stage: Docker Push
+- stage: Docker
   dependsOn: Build
   jobs:
   - job: Docker
