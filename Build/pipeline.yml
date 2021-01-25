@@ -33,7 +33,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker'
-    repository: 'pdarni88'
+    repository: 'pdarni88/test1'
     command: 'buildAndPush'
     Dockerfile: '$(WorkingDirectory1)/Dockerfile'
 
